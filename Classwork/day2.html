@@ -15,9 +15,12 @@
       // console.log(customerDetails.review.length);
       function printReview(objName) {
         const formattedName = objName.name.toUpperCase();
-
-        // console.log(`Thankyou ${name} , your comment:{}`);
+        const formatedComment = objName.review.slice(0,20)
+        console.log(
+          `Thankyou ${formattedName} , your comment:${formatedComment}`,
+        );
       }
+      printReview(customerDetails);
       // to be compeleted
     </script>
   </body>
