@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E-wallet</title>
+  </head>
+  <body>
+    <script>
+      const name = "Alex";
+      let initialBalance = 1000;
+      let amountAdded = 500;
+      let amoutSpend = 700;
+      let isGuest = false;
+      let calculate =
+        isGuest == true
+          ? "Acces denied for guets user"
+          : update(initialBalance, amountAdded, amoutSpend);
+      function update(initial, added, spend) {
+        let updatedBalance = initial + added - spend;
+        console.log("Updated balance: " + updatedBalance);
+      }
+    </script>
+  </body>
+</html>
