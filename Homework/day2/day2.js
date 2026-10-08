@@ -1,0 +1,25 @@
+// let fullName = "Sara Johnson";
+// let welcomeMsg = "   Welcome to the new platform! Hope you enjoy your time ";
+// let formattedWelcomMsg = welcomeMsg.trim();
+let nameWelcome = {
+  fullName: "Sara Johnson",
+  welcomeMsg: "   Welcome to the new platform! Hope you enjoy your time ",
+  // function()
+};
+console.log(formattedWelcomMsg);
+console.log(`First Letter of full name:${fullName.charAt(0)}`);
+console.log(`Total characters in welcome message:${welcomeMsg.length}`);
+console.log(
+  `first 15 characters of the welcome (slice):${welcomeMsg.slice(0, 15)}`,
+);
+console.log(
+  `first 15 characters of the welcome (substring):${welcomeMsg.substring(0, 15)}`,
+);
+console.log(`Full name in uppercase:${fullName.toUpperCase()}`);
+console.log(`welcome message in lowercase:${welcomeMsg.toLowerCase()}`);
+console.log(`After trimmed message:${welcomeMsg.trim()}`);
+let nameArray = fullName.split(" ");
+console.log(`After splitting the name into array:${nameArray}`);
+console.log(`position of welcome is at : ${welcomeMsg.search(/welcome/i)}`);
+let joined = fullName.concat(" ", formattedWelcomMsg);
+console.log(joined);

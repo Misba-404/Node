@@ -1,0 +1,15 @@
+const name = "Alex";
+let initialBalance = 1000;
+let amountAdded = 500;
+let amoutSpend = 700;
+let isGuest = false;
+let calculate =
+  isGuest == true
+    ? "Acces denied for guets user"
+    : update(initialBalance, amountAdded, amoutSpend);
+function update(initial, added, spend) {
+  let updatedBalance = initial + added - spend;
+  console.log("Updated balance: " + updatedBalance);
+  console.log(`Is balance greater than 0: ${updatedBalance > 0}`);
+  console.log(`typeof balance is: ${typeof updatedBalance}`);
+}
