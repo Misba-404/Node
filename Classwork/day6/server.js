@@ -5,7 +5,7 @@ const server = http.createServer(function (req, res) {
     if (err) throw err;
     function checkName(name) {
       if (data.includes(name)) {
-        return console.log(`valid user`);
+        console.log(`valid user`);
       } else {
         console.log(`Unknown user`);
       }
