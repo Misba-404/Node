@@ -1,8 +1,9 @@
 const http = require("http");
 const fs = require("fs");
 const server = http.createServer(function (req, res) {
-  fs.readFile("profile.txt", function (err, data) {
+  fs.readFile("profile.txt","utf-8", function (err, data) {
     if (err) throw err;
+    let extractedName=data.split("\n")[0].replace("Name:","").trim()
     function checkProfile(name) {
       if (data.includes(name)) {
         console.log(`Profile verified`);
@@ -11,7 +12,7 @@ const server = http.createServer(function (req, res) {
       }
     }
     checkProfile("Riya");
-    res.end(data);
+    res.end(extractedName);
   });
 });
 server.listen(8080);
