@@ -1,0 +1,4 @@
+Name: Riya
+Age: 22
+City: Mumbai
+Status:active
