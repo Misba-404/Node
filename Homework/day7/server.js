@@ -31,3 +31,4 @@ http
     });
   })
   .listen(8080);
+console.log(`server loaded at http://localhost:8080`);
