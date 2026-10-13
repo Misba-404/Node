@@ -10,8 +10,7 @@ eventEmitter.on("pageViewed", function (page) {
 
 let server = http.createServer(function (req, res) {
   let q = url.parse(req.url, true);
-  // let filename = "." + q.pathname;
-  // let filename = "." + (q.pathname === "/" ? "/index.html" : q.pathname);
+ 
   let filename;
 
   if (q.pathname === "/home.html") {
@@ -23,7 +22,6 @@ let server = http.createServer(function (req, res) {
     console.log("The page was not found");
     return res.end("Sorry, page not found!");
   }
-  //
   fs.readFile(filename, function (err, data) {
     if (err) {
       res.writeHead(404, { "Content-Type": "text/html" });
