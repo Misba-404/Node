@@ -46,7 +46,7 @@ var server = http.createServer((req, res) => {
         transport.sendMail(
           {
             from: "Private Person <from@example.com>",
-            to: "A Test User <to@example.com>",
+            to: "admin@example.com",
             subject: "File uploaded!",
             text: "A user uploaded a file to the support portal.\nA file has been uploaded by a user. Please check the server.",
           },
@@ -66,7 +66,7 @@ var server = http.createServer((req, res) => {
     res.write(
       '<form action="/fileupload" method="post" enctype="multipart/form-data">',
     );
-    res.write('<h1>Tech support</h1>')
+    res.write("<h1>Tech support</h1>");
     res.write('<input type="file" name="filetoupload"><br>');
     res.write('<input type="submit">');
     res.write("</form>");
