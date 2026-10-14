@@ -58,6 +58,7 @@ var server = http.createServer((req, res) => {
             console.log("Message sent: %s", info.messageId);
           },
         );
+        console.log(` oldpath: ${oldpath}`);
         res.end("File uploaded, moved, and Email send");
       });
     });
