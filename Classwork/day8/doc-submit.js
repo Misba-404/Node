@@ -4,7 +4,7 @@ const fs = require("fs");
 const path = require("path");
 const nodemailer = require("nodemailer");
 
-var transport = nodemailer.createTransport({
+const transport = nodemailer.createTransport({
   //nodemailer cofnig and info
   host: "sandbox.smtp.mailtrap.io",
   port: 2525,
@@ -67,6 +67,7 @@ var server = http.createServer((req, res) => {
     res.write(
       '<form action="/fileupload" method="post" enctype="multipart/form-data">',
     );
+    res.write("<h1>Document submission system</h1>");
     res.write('<input type="file" name="filetoupload"><br>');
     res.write('<input type="submit">');
     res.write("</form>");
