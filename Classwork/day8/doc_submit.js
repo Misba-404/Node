@@ -1,7 +1,18 @@
-var formidable = require("formidable");
-var http = require("http");
-var fs = require("fs");
-var path = require("path");
+const formidable = require("formidable");
+const http = require("http");
+const fs = require("fs");
+const path = require("path");
+const nodemailer = require("nodemailer");
+
+var transport = nodemailer.createTransport({
+  //nodemailer cofnig and info
+  host: "sandbox.smtp.mailtrap.io",
+  port: 2525,
+  auth: {
+    user: "b7a5a05a73fc49",
+    pass: "f09e0b2e181310",
+  },
+});
 
 var server = http.createServer((req, res) => {
   if (req.url == "/fileupload" && req.method.toLowerCase() === "post") {
@@ -29,7 +40,25 @@ var server = http.createServer((req, res) => {
           return;
         }
         res.writeHead(200, { "Content-Type": "text/plain" });
-        res.end("File uploaded and moved!");
+        // res.write("File uploaded and moved!"); // it was res.end("File up....") before
+        // res.end();
+
+        //nodemailer code below
+        transport.sendMail(
+          {
+            from: "Private Person <from@example.com>",
+            to: "A Test User <to@example.com>",
+            subject: "Hello from Mailtrap",
+            text: "This is a test e-mail message.",
+          },
+          (error, info) => {
+            if (error) {
+              return console.log(error);
+            }
+            console.log("Message sent: %s", info.messageId);
+          },
+        );
+        res.end("File uploaded, moved, and Email send");
       });
     });
   } else {
