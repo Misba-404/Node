@@ -2,7 +2,7 @@ const { MongoClient } = require("mongodb");
 const url = "mongodb://localhost:27017/";
 MongoClient.connect(url)
   .then((client) => {
-    const db = client.db("mashupdb");
+    const db = client.db("MonogNode");
     const collection = db.collection("leads");
     const myobj = [
       { name: "Arjun", city: "Kannur" },
