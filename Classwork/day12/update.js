@@ -2,7 +2,7 @@ const { MongoClient } = require("mongodb");
 const { dirname } = require("node:path");
 const { name } = require("nodemailer/lib/package-info.js");
 const url = "mongodb://localhost:27017/";
-const dbName = "Nodeupdate";
+const dbName = "NodeUpdate";
 // MongoClient.connect(url).then((client) => {
 //   const db = client.db("NodeUpdate");
 //   const sampleRegistrations = [
@@ -44,17 +44,17 @@ async function run() {
   const client = new MongoClient(url);
 
   try {
-    await client.connect;
+    await client.connect();
     console.log("Connected succesfully to Mongodb");
 
     const db = client.db(dbName);
     const collection = db.collection("registrations");
     // to delete clear collection before updating
 
-    /*await collection.deleteMany({});
-    console.log("collection cleared!");*/
+    await collection.deleteMany({});
+    console.log("collection cleared!");
 
-    const insertResult = await collection.insertMany({ sampleRegistrations });
+    const insertResult = await collection.insertMany(sampleRegistrations);
     console.log(`Number of docs inserted:${insertResult.insertedCount}`);
 
     const updateJohn = await collection.updateOne(
@@ -88,5 +88,9 @@ async function run() {
     //
   } catch (err) {
     console.error("An error occured", err);
+  } finally {
+    await client.close();
+    console.log("Database connection closed");
   }
 }
+run();
