@@ -81,7 +81,7 @@ async function run() {
     console.log(
       `Deleted ${deleteAllD.deletedCount} documents starting with 'D'`,
     );
-    const finalOut = await collection.find({}).toArray();
+    const finalOut = await collection.find({},{projection:{_id:0}}).toArray();
     console.log("Remaining registrations are :\n");
     console.log(finalOut);
 
@@ -89,8 +89,8 @@ async function run() {
   } catch (err) {
     console.error("An error occured", err);
   } finally {
+      console.log("Database connection closed");
     await client.close();
-    console.log("Database connection closed");
   }
 }
 run();
