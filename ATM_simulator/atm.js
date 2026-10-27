@@ -14,6 +14,7 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
+// auth
 async function authenticate() {
   let attempts = 0;
   while (attempts <= 3) {
@@ -34,14 +35,16 @@ async function authenticate() {
     }
   }
   console.log(`Maximum attempts Reached. try again later`);
-  return false();
+  return false;
 }
 
+// Balance
 async function checkBalance() {
   const balance = account.balance;
   console.log(`Current Balance: ${balance}`);
 }
 
+// Withdraw
 async function withdraw() {
   if (withdrawalCount > 3) {
     console.log(`You have exceeded the  wothdrawaal limit per session`);
@@ -73,3 +76,81 @@ async function withdraw() {
   console.log(`Withdrawal of ${amount} is successfull`);
   console.log(`Remaining Balance:${account.balance}`);
 }
+
+// Deposit
+async function deposit() {
+  const depositAmount = await rl.question("Enter Amount you want to deposit:");
+  const amount = await Number(depositAmount);
+  if (isNaN(amount) || amount <= 0) {
+    console.log(`Enter a valid amount greater than 0 for deposit`);
+    return;
+  }
+
+  // Success
+  account.balance += amount;
+  transactions.push({
+    type: "Deposit",
+    amount: amount,
+    "Updated Balance": account.balance,
+  });
+  console.log(`Deposit of ${amount} is successfull `);
+  console.log(`Updated Balance: ${account.balance}`);
+}
+
+// transactions
+async function displayTransactions() {
+  console.log(`========== TRANSACTION HISTORY ==========
+`);
+  console.table(transactions);
+}
+
+// Show menu
+async function showMenu() {
+  let exit = false;
+  while (exit == false) {
+    console.log("========== SMART ATM ==========");
+    console.log("1. Check Balance");
+    console.log("2. Withdraw Money");
+    console.log("3. Deposit Money");
+    console.log("4. View Transaction History");
+    console.log("5. Exit");
+    const option = await rl.question("Choose an option:");
+    switch (option) {
+      case "1":
+        checkBalance();
+        break;
+      case "2":
+        withdraw();
+        break;
+      case "3":
+        deposit();
+        break;
+      case "4":
+        displayTransactions();
+        break;
+      case "5":
+        exit = true;
+        console.log(`Thanks for using the ATM. Please visit again!`);
+        break;
+      default:
+        console.log("invalid option. choose an option between 1 and 5.");
+        break;
+    }
+  }
+}
+
+//
+async function run() {
+  try {
+    authenticate();
+    if (authenticate) {
+      showMenu();
+    }
+    console.log("Sorry invalid ");
+  } catch (error) {
+    console.error(error);
+  } finally {
+    rl.close();
+  }
+}
+run();
