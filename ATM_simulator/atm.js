@@ -17,7 +17,7 @@ const rl = readline.createInterface({
 // auth
 async function authenticate() {
   let attempts = 0;
-  while (attempts <= 3) {
+  while (attempts < 3) {
     const inputAcc = await rl.question("Enter Account number: ");
     const inputPin = await rl.question("Enter your pin: ");
 
@@ -102,6 +102,7 @@ async function displayTransactions() {
   console.log(`========== TRANSACTION HISTORY ==========
 `);
   console.table(transactions);
+  
 }
 
 // Show menu
@@ -114,19 +115,20 @@ async function showMenu() {
     console.log("3. Deposit Money");
     console.log("4. View Transaction History");
     console.log("5. Exit");
+    console.log("===============================");
     const option = await rl.question("Choose an option:");
     switch (option) {
       case "1":
-        checkBalance();
+        await checkBalance();
         break;
       case "2":
-        withdraw();
+        await withdraw();
         break;
       case "3":
-        deposit();
+        await deposit();
         break;
       case "4":
-        displayTransactions();
+        await displayTransactions();
         break;
       case "5":
         exit = true;
@@ -142,11 +144,10 @@ async function showMenu() {
 //
 async function run() {
   try {
-    authenticate();
-    if (authenticate) {
-      showMenu();
+    const isAuthenticated = await authenticate();
+    if (isAuthenticated) {
+      await showMenu();
     }
-    console.log("Sorry invalid ");
   } catch (error) {
     console.error(error);
   } finally {
