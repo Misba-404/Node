@@ -1,5 +1,3 @@
-const { type } = require("os");
-const { stdin, stdout, constrainedMemory } = require("process");
 const readline = require("readline/promises");
 const account = {
   accountNumber: "123456",
@@ -46,12 +44,12 @@ async function checkBalance() {
 
 // Withdraw
 async function withdraw() {
-  if (withdrawalCount > 3) {
+  if (withdrawalCount >= 3) {
     console.log(`You have exceeded the  wothdrawaal limit per session`);
     return;
   }
   const inputAmount = await rl.question("Enter the amout to withdraw:");
-  const amount = await Number(inputAmount);
+  const amount = Number(inputAmount);
   if (isNaN(amount) || amount <= 0) {
     console.log(`Invalid amount. Amount must be greater than zero`);
     return;
@@ -80,7 +78,7 @@ async function withdraw() {
 // Deposit
 async function deposit() {
   const depositAmount = await rl.question("Enter Amount you want to deposit:");
-  const amount = await Number(depositAmount);
+  const amount = Number(depositAmount);
   if (isNaN(amount) || amount <= 0) {
     console.log(`Enter a valid amount greater than 0 for deposit`);
     return;
