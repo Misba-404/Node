@@ -59,3 +59,29 @@ async function connectAndInsert() {
     console.error(error);
   }
 }
+
+async function addExpense() {
+  console.log("Add expense by Filling the appropriate details below");
+  const inUser = rl.question("username:");
+  const inCategory = rl.question("Category:");
+  const inAmount = rl.question("Amount:");
+  const inNote = rl.question("note:");
+  const indate = rl.question("date:");
+
+  if (amount < 0) {
+    return;
+  }
+  if (!isFinite(amount)) {
+    return;
+  }
+
+  // success
+  expenseData.push({
+    user: inUser,
+    category: inCategory,
+    amount: inAmount,
+    note: inNote,
+    date: indate,
+  });
+  console.log(`Expense added successfully`);
+}
