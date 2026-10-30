@@ -62,26 +62,28 @@ async function connectAndInsert() {
 
 async function addExpense() {
   console.log("Add expense by Filling the appropriate details below");
-  const inUser = rl.question("username:");
-  const inCategory = rl.question("Category:");
-  const inAmount = rl.question("Amount:");
-  const inNote = rl.question("note:");
-  const indate = rl.question("date:");
-
+  const inUser = await rl.question("username:");
+  const inCategory = await rl.question("Category:");
+  const inAmount = await rl.question("Amount:");
+  const inNote = await rl.question("note:");
+  const indate = await rl.question("date:");
+  const amount = Number(inAmount);
   if (amount < 0) {
+    console.log(`Amount must be a positive number`);
     return;
   }
-  if (!isFinite(amount)) {
+  if (!Number.isFinite(amount)) {
+    console.log(`Amount must be valid numeric value`);
     return;
   }
 
   // success
   expenseData.push({
-    user: inUser,
-    category: inCategory,
-    amount: inAmount,
-    note: inNote,
-    date: indate,
+    user: inUser.trim(),
+    category: inCategory.trim(),
+    amount: amount.trim(),
+    note: inNote.trim(),
+    date: indate.trim(),
   });
   console.log(`Expense added successfully`);
 }
