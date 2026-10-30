@@ -6,7 +6,13 @@ const rl = readline.createInterface({
 
 async function main() {
   const number = await rl.question("Enter a number for multiplication:");
-  console.log(`Your number is ${number}`);
+  let i, j;
+
+  for (i = 1; i <= 10; i++) {
+    let result = i * number;
+    console.log(`${i} x ${number} = ${result}`);
+  }
+
   rl.close();
 }
 main();
