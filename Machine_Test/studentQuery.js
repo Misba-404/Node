@@ -14,8 +14,9 @@ async function main() {
   const idNumber = await rl.question(
     "Enter the id number of the student to fetch details:",
   );
-  // console.table(studentDetials[idNumber -1]);
-  console.table("Id:" + studentDetials[idNumber - 1].id);
-  console.table("Name:" + studentDetials[idNumber - 1].name);
+  console.table(studentDetials[idNumber - 1]);
+  // console.table("Id:" + studentDetials[idNumber - 1].id);
+  // console.table("Name:" + studentDetials[idNumber - 1].name);
+  rl.close();
 }
 main();
