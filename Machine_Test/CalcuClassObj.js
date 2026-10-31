@@ -51,6 +51,7 @@ async function main() {
       break;
     default:
       console.log("Choose a valid number from 1-4");
+      break;
   }
   rl.close();
 }
