@@ -5,7 +5,7 @@ const rl = readline.createInterface({
 });
 
 async function main() {
-  const number = await rl.question("Enter a number for multiplication:");
+  const number = await rl.question("Enter a number for multiplication table:");
   let i, j;
 
   for (i = 1; i <= 10; i++) {

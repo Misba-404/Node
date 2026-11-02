@@ -20,6 +20,9 @@ class Calculator {
     return console.log("Product:", this.num1 * this.num2);
   }
   division() {
+    if (this.num2 == 0) {
+      return console.log("cannot divide using zero");
+    }
     return console.log("Result:", this.num1 / this.num2);
   }
 }
